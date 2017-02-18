@@ -88,3 +88,8 @@ fos_user:
     from_email:
         address: you@example.com
         sender_name: You 
+easy_admin:
+    entities:
+        - AppBundle\Entity\Post
+        - AppBundle\Entity\Comment
+        

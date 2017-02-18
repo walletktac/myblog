@@ -54,7 +54,9 @@ class Comment
     public function __construct() {
         $this->createdAt = new \DateTime('now');
     }
-
+    public function __toString() {
+        return $this->content;
+    }
 
     /**
      * Get id
