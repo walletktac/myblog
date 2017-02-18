@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{#{% form_theme form 'bootstrap_3_layout.html.twig' %}#}
 
 {% block body %}
 
@@ -13,19 +13,23 @@
         <hr>
 
         <h3>Komentarze</h3>
+        
+        {% if app.user %}
+            {{ form_start(form) }}
 
-        {{ form_start(form) }}
+            {{ form_widget(form) }}
 
-        {{ form_widget(form) }}
+            <button class="btn btn-primary pull-right">Dodaj komentarz</button>
 
-        <button class="btn btn-primary pull-right">Dodaj komentarz</button>
-
-        {{ form_end(form) }}
+            {{ form_end(form) }}
+            {% else %}
+                <p> Komentarze mogą dodawać zalogowani użytkownicy. <a href="{{ path('fos_user_security_login') }}">Zaloguj się</a>
+        {% endif %}
         <div class="commentContent" style="margin-top:60px;">
             {% for comment in post.comments%}
                 <div class="comment">
                     <p>{{ comment.content }}</p>
-                    <span style="font-size: 11px">Dodano: {{ post.createdAt|date('H:i d/m/y') }}</span>
+                    <span style="font-size: 11px">Dodany: {{ post.createdAt|date('H:i d/m/y') }} {% if comment.user %}Przez: {{ comment.user }}{% endif %}</span>
                 </div>
                 <hr>
             {% endfor %}

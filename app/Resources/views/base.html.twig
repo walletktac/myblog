@@ -9,8 +9,16 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div class="container">{% block body %}{% endblock %}</div>
-        
-        {% block javascripts %}{% endblock %}
-    </body>
+        <div class="container">
+            <div class="pull-right">
+                {% if app.user %}
+                    Zalogowany jako {{ app.user }} | <a href="{{ path('fos_user_security_logout') }}">Wyloguj</a>
+                    {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">Zaloguj się</a>
+                {% endif %}
+            </div>
+        {% block body %}{% endblock %}</div>
+
+{% block javascripts %}{% endblock %}
+</body>
 </html>
