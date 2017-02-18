@@ -7,5 +7,11 @@
         <h2>{{ post.title }}</h2>
         <p>{{ post.lead }}</p>
     {% endfor %}
+    
+    <div class="navigation">
+        {{ knp_pagination_render(posts) }}
+    </div>
+    
+    
 {% endblock %}
 
