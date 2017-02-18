@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+
+
+
+    <h1>{{ post.title }}</h1>
+    <div>
+        <p>{{ post.lead }}</p>
+        <p>{{ post.content }}</p>
+        <span class="">Dodano: {{ post.createdAt|date('H:i d/m/y') }}</span>
+        <hr>
+
+        <h3>Komentarze</h3>
+
+        {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+        <button class="btn btn-primary pull-right">Dodaj komentarz</button>
+
+        {{ form_end(form) }}
+        <div class="commentContent" style="margin-top:60px;">
+            {% for comment in post.comments%}
+                <div class="comment">
+                    <p>{{ comment.content }}</p>
+                    <span style="font-size: 11px">Dodano: {{ post.createdAt|date('H:i d/m/y') }}</span>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+{% endblock %}
+

@@ -4,7 +4,7 @@
     <h1>Blog</h1>
     
     {% for post in posts %}
-        <h2>{{ post.title }}</h2>
+        <h2><a href="{{ path('show_post', { id : post.id })}}">{{ post.title }}</a></h2>
         <p>{{ post.lead }}</p>
     {% endfor %}
     
